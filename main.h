@@ -11,5 +11,6 @@ int print_unsigned (unsigned int num);
 int print_octal (unsigned int num);
 int print_hex (unsigned int num);
 int print_handler(va_list args, char conv);
+int print_string(char *s);
 
 #endif

@@ -85,8 +85,7 @@ int print_handler(va_list args, char conv)
 		char *value;
 
 		value = va_arg(args, char *);
-		write(1, value, get_size(value));
-		count = get_size(value);
+		count = print_string(value);
 	}
 	else if (conv == '%')
 	{
@@ -107,4 +106,23 @@ int print_handler(va_list args, char conv)
 	}
 
 	return (count);
+}
+
+int print_string(char *s)
+{
+	int len;
+
+	if (s == NULL)
+	{
+		s = "(null)";
+		len = get_size(s);
+		write(1, s, get_size(s));
+		return (len);
+	}
+	else
+	{
+		len = get_size(s);
+		write(1, s, get_size(s));
+		return (len);
+	}
 }
