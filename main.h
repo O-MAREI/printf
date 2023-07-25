@@ -4,10 +4,10 @@
 int _printf(const char *format, ...);
 int get_size(char str[]);
 int count_num (int n);
-void print_binary (unsigned int n);
-void print_int (int num);
-void print_unsigned (unsigned int num);
-void print_octal (unsigned int num);
-void print_hex (unsigned int num);
+int print_binary (unsigned int n);
+int print_int (int num);
+int print_unsigned (unsigned int num);
+int print_octal (unsigned int num);
+int print_hex (unsigned int num);
 
 #endif

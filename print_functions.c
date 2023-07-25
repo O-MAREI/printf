@@ -3,10 +3,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void print_int (int num)
+int print_int (int num)
 {
 	char digits[10];
-	int i = 0;
+	int i = 0, count;
 	
 	while (num > 0)
 	{
@@ -15,16 +15,20 @@ void print_int (int num)
 		i++;
 	}
 
+	count = i;
+
 	for (i = i - 1; i >= 0; i--)
 	{
 		write (1, &digits[i], 1);
 	}
+
+	return (count);
 }
 
-void print_binary (unsigned int n)
+int print_binary (unsigned int n)
 {
 	char a[10];
-	int i;
+	int i, count;
 
 	for (i = 0; n > 0; i++)
 	{
@@ -32,16 +36,20 @@ void print_binary (unsigned int n)
 		n = n / 2;
 	}
 
+	count = i;
+
 	for (i = i - 1; i >= 0; i--)
 	{
 		write (1, &a[i], 2);
 	}
+
+	return (count);
 }
 
-void print_unsigned (unsigned int num)
+int print_unsigned (unsigned int num)
 {
         char digits[10];
-	int i = 0;
+	int i = 0, count;
 
 	while (num > 0)
 	{
@@ -50,15 +58,19 @@ void print_unsigned (unsigned int num)
 		i++;
 	}
 
+	count = i;
+
 	for (i = i - 1; i >= 0; i--)
 	{
 		write (1, &digits[i], 1);
 	}
+
+	return (count);
 }
 
-void print_octal (unsigned int num)
+int print_octal (unsigned int num)
 {
-	int octal = 0, i = 1, count = 0;
+	int octal = 0, i = 1, count = 0, charcount;
 	char digits[10];
 	
 	while (num != 0)
@@ -75,13 +87,17 @@ void print_octal (unsigned int num)
 		count++;
 	}
 
+	charcount = count;
+
 	for (count = count - 1; count >= 0; count--)
 	{
 		write (1, &digits[count], 1);
 	}
+
+	return (charcount);
 }
 
-void print_hex (unsigned int num)
+int print_hex (unsigned int num)
 {
 	char hexnum[100];
 	int remainder, i, j = 0;
@@ -100,4 +116,6 @@ void print_hex (unsigned int num)
 
 	for (i = j; i >= 0; i--)
 		write (1, &hexnum[i], 1);
+
+	return (j);
 }

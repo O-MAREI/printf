@@ -9,8 +9,8 @@
  */
 int main(void)
 {
-    _printf("Let's try to printf a%u simple se%onte%xnce.\n", -55, 55, 666);
-    printf("Let's try to printf a simple sentence %d.\n", 2);
+    _printf("Let's try to printf a simple sentence. %c %s %% \n", 'a', "test with a ", 1, 3);
+    printf("Let's try to printf a simple sentence. %c \n", 2);
 
     return (0);
 }

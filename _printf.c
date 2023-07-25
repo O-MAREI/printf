@@ -6,8 +6,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i;
-	int count;
+	int i, count = 0;
 	char ch, converter;
 	va_start(args, format);
 
@@ -32,46 +31,49 @@ int _printf(const char *format, ...)
 			{
 				char value = va_arg(args, int);
 				write (1, &value, 1);
+				count++;
 			}
 			else if (converter == 's')
 			{
 				char *value;
 				value = va_arg(args, char *);
 				write (1, value, get_size(value));
+				count = count + get_size(value);
 			}
 			else if (converter == '%')
 			{
 				char value = '%';
 				write (1, &value, 1);
+				count++;
 			}
 		
 			else if (converter == 'd' || converter == 'i')
 			{
 				int value = va_arg(args, int);
-				print_int(value);
+				count = count + print_int(value);
 			}
 			else if (converter == 'b')
 			{
 				unsigned int value = va_arg(args, unsigned int);
-				print_binary (value);
+				count = count + print_binary (value);
 			}
 			else if (converter == 'u')
 			{
 				unsigned int value = va_arg(args, unsigned int);
-				print_unsigned (value);
+				count = count + print_unsigned (value);
 			}
 			else if (converter == 'o')
 			{
 				unsigned int value = va_arg(args, unsigned int);
-				print_octal (value);
+				count = count + print_octal (value);
 			}
 			else if (converter == 'x')
 			{
 				unsigned int value = va_arg(args, unsigned int);
-				print_hex (value);
+				count = count + print_hex (value);
 			}
 		}
 	}
-	
-	return (0);
+
+	return (count);
 }
