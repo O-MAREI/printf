@@ -4,6 +4,9 @@
 #include <stdio.h>
 
 int get_size(char str[]);
+int count_num (int n);
+void print_binary (unsigned int n);
+void print_int (int num);
 
 int _printf(const char *format, ...)
 {
@@ -46,6 +49,16 @@ int _printf(const char *format, ...)
 				char value = '%';
 				write (1, &value, 1);
 			}
+			else if (converter == 'd' || converter == 'i')
+			{
+				int value = va_arg(args, int);
+				print_int(value);
+			}
+			else if (converter == 'b')
+			{
+				unsigned int value = va_arg(args, unsigned int);
+				print_binary (value);
+			}
 		}
 	}
 	
@@ -63,4 +76,46 @@ int get_size(char str[])
 	}
 
 	return (i);
+}
+
+int count_num (int n)
+{
+	int count = 0;
+
+	while (n != 0)
+	{
+		n /= 10;
+		count++;
+	}
+
+	return (count);
+}
+
+void print_int (int num)
+{
+	char digit;
+	
+	while (num > 0)
+	{
+		digit = (num % 10) + '0';
+		num = num / 10;
+		write (1, &digit, 1);
+	}
+}
+
+void print_binary (unsigned int n)
+{
+	char a[10];
+	int i;
+
+	for (i = 0; n > 0; i++)
+	{
+		a[i] = n % 2 + '0';
+		n = n / 2;
+	}
+
+	for(i = i - 1; i >= 0; i--)
+	{
+		write (1, &a[i], 2);
+	}
 }

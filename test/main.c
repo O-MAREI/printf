@@ -9,8 +9,8 @@
  */
 int main(void)
 {
-    _printf("%%Let's try %co printf a %smple sentence.\n", 't', "si");
-    printf("Let's try to printf a simple sentence.\n");
+    _printf("Let's try to printf a%d simple%b sentence.\n", 55, 988);
+    printf("Let's try to printf a simple sentence %d.\n", 2);
 
     return (0);
 }
