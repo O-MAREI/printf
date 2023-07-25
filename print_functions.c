@@ -3,11 +3,17 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-int print_int (int num)
+
+/**
+ * print_int - Prints integer, returns character count.
+ * @num: The integer.
+ * Return: Character count.
+ */
+int print_int(int num)
 {
-	char digits[10];
+	char digits[100];
 	int i = 0, count;
-	
+
 	while (num > 0)
 	{
 		digits[i] = (num % 10) + '0';
@@ -19,15 +25,22 @@ int print_int (int num)
 
 	for (i = i - 1; i >= 0; i--)
 	{
-		write (1, &digits[i], 1);
+		write(1, &digits[i], 1);
 	}
 
 	return (count);
 }
 
-int print_binary (unsigned int n)
+/**
+ * print_binary - Converts unsigned int to binary and prints it.
+ * Returns character count.
+ *
+ * @n: The integer.
+ * Return: Character count.
+ */
+int print_binary(unsigned int n)
 {
-	char a[10];
+	char a[100];
 	int i, count;
 
 	for (i = 0; n > 0; i++)
@@ -40,15 +53,20 @@ int print_binary (unsigned int n)
 
 	for (i = i - 1; i >= 0; i--)
 	{
-		write (1, &a[i], 2);
+		write(1, &a[i], 2);
 	}
 
 	return (count);
 }
 
-int print_unsigned (unsigned int num)
+/**
+ * print_unsigned - Prints unsigned int, returns character count.
+ * @num: The unsigned integer.
+ * Return: Character count.
+ */
+int print_unsigned(unsigned int num)
 {
-        char digits[10];
+	char digits[100];
 	int i = 0, count;
 
 	while (num > 0)
@@ -62,17 +80,22 @@ int print_unsigned (unsigned int num)
 
 	for (i = i - 1; i >= 0; i--)
 	{
-		write (1, &digits[i], 1);
+		write(1, &digits[i], 1);
 	}
 
 	return (count);
 }
 
-int print_octal (unsigned int num)
+/**
+ * print_octal - Converts int to octal and prints it.
+ * @num: The integer.
+ * Return: Character count.
+ */
+int print_octal(unsigned int num)
 {
 	int octal = 0, i = 1, count = 0, charcount;
-	char digits[10];
-	
+	char digits[100];
+
 	while (num != 0)
 	{
 		octal += (num % 8) * i;
@@ -91,13 +114,18 @@ int print_octal (unsigned int num)
 
 	for (count = count - 1; count >= 0; count--)
 	{
-		write (1, &digits[count], 1);
+		write(1, &digits[count], 1);
 	}
 
 	return (charcount);
 }
 
-int print_hex (unsigned int num)
+/**
+ * print_hex - Converts int to hexadecimal and prints it.
+ * @num: The integer.
+ * Return: Character count.
+ */
+int print_hex(unsigned int num)
 {
 	char hexnum[100];
 	int remainder, i, j = 0;
@@ -105,7 +133,7 @@ int print_hex (unsigned int num)
 	while (num != 0)
 	{
 		remainder = num % 16;
-		
+
 		if (remainder < 10)
 			hexnum[j++] = 48 + remainder;
 		else
@@ -115,7 +143,7 @@ int print_hex (unsigned int num)
 	}
 
 	for (i = j; i >= 0; i--)
-		write (1, &hexnum[i], 1);
+		write(1, &hexnum[i], 1);
 
 	return (j);
 }
