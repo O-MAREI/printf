@@ -78,6 +78,12 @@ int _printf(const char *format, ...)
 				unsigned int value = va_arg(args, unsigned int);
 				print_hex (value);
 			}
+			else if (converter == 'S')
+			{
+				char * value;
+				value = va_arg(args, char *);
+				write (1, value, get_size(value));
+			}
 		}
 	}
 	
