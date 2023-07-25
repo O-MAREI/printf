@@ -7,6 +7,9 @@ int get_size(char str[]);
 int count_num (int n);
 void print_binary (unsigned int n);
 void print_int (int num);
+void print_unsigned (unsigned int num);
+void print_octal (unsigned int num);
+void print_hex (unsigned int num);
 
 int _printf(const char *format, ...)
 {
@@ -49,6 +52,7 @@ int _printf(const char *format, ...)
 				char value = '%';
 				write (1, &value, 1);
 			}
+		
 			else if (converter == 'd' || converter == 'i')
 			{
 				int value = va_arg(args, int);
@@ -58,6 +62,21 @@ int _printf(const char *format, ...)
 			{
 				unsigned int value = va_arg(args, unsigned int);
 				print_binary (value);
+			}
+			else if (converter == 'u')
+			{
+				unsigned int value = va_arg(args, unsigned int);
+				print_unsigned (value);
+			}
+			else if (converter == 'o')
+			{
+				unsigned int value = va_arg(args, unsigned int);
+				print_octal (value);
+			}
+			else if (converter == 'x')
+			{
+				unsigned int value = va_arg(args, unsigned int);
+				print_hex (value);
 			}
 		}
 	}
@@ -93,13 +112,19 @@ int count_num (int n)
 
 void print_int (int num)
 {
-	char digit;
+	char digits[10];
+	int i = 0;
 	
 	while (num > 0)
 	{
-		digit = (num % 10) + '0';
+		digits[i] = (num % 10) + '0';
 		num = num / 10;
-		write (1, &digit, 1);
+		i++;
+	}
+
+	for (i = i - 1; i >= 0; i--)
+	{
+		write (1, &digits[i], 1);
 	}
 }
 
@@ -114,8 +139,72 @@ void print_binary (unsigned int n)
 		n = n / 2;
 	}
 
-	for(i = i - 1; i >= 0; i--)
+	for (i = i - 1; i >= 0; i--)
 	{
 		write (1, &a[i], 2);
 	}
+}
+
+void print_unsigned (unsigned int num)
+{
+        char digits[10];
+	int i = 0;
+
+	while (num > 0)
+	{
+		digits[i] = (num % 10) + '0';
+		num = num / 10;
+		i++;
+	}
+
+	for (i = i - 1; i >= 0; i--)
+	{
+		write (1, &digits[i], 1);
+	}
+}
+
+void print_octal (unsigned int num)
+{
+	int octal = 0, i = 1, count = 0;
+	char digits[10];
+	
+	while (num != 0)
+	{
+		octal += (num % 8) * i;
+		num /= 8;
+		i *= 10;
+	}
+
+	while (octal > 0)
+	{
+		digits[count] = (octal % 10) + '0';
+		octal = octal / 10;
+		count++;
+	}
+
+	for (count = count - 1; count >= 0; count--)
+	{
+		write (1, &digits[count], 1);
+	}
+}
+
+void print_hex (unsigned int num)
+{
+	char hexnum[100];
+	int remainder, i, j = 0;
+
+	while (num != 0)
+	{
+		remainder = num % 16;
+		
+		if (remainder < 10)
+			hexnum[j++] = 48 + remainder;
+		else
+			hexnum[j++] = 55 + remainder;
+
+		num = num / 16;
+	}
+
+	for (i = j; i >= 0; i--)
+		write (1, &hexnum[i], 1);
 }
