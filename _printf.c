@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i, count = 0;
+	int i, temp, count = 0;
 	char ch, converter;
 
 	va_start(args, format);
@@ -35,7 +35,13 @@ int _printf(const char *format, ...)
 			if (converter == '\0' || converter == ' ')
 				return (-1);
 			else
-				count = count + print_handler(args, converter);
+			{
+				temp = print_handler(args, converter);
+				if (temp == -2)
+					return (-1);
+				else
+					count = count + temp;
+			}
 		}
 	}
 
@@ -101,11 +107,9 @@ int print_handler(va_list args, char conv)
 
 		count = print_int(value);
 	}
-	else if (conv == 'b' || conv == 'u' || conv == 'o' || conv == 'x')
+	else
 	{
-		unsigned int value = va_arg(args, unsigned int);
-
-		count = unsigned_handler(value, conv);
+		count = -2;
 	}
 
 	return (count);
