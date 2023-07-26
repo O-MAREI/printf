@@ -87,8 +87,10 @@ int print_handler(va_list args, char conv)
 	if (conv == 'c')
 	{
 		char value = va_arg(args, int);
-
-		_putchar(value);
+		if (value == (char) 0)
+			count = -2;
+		else
+			_putchar(value);
 		count = 1;
 	}
 	else if (conv == 's')
