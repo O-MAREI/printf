@@ -86,7 +86,7 @@ int print_handler(va_list args, char conv)
 	{
 		char value = va_arg(args, int);
 
-		write(1, &value, 1);
+		_putchar(value);
 		count = 1;
 	}
 	else if (conv == 's')
@@ -124,14 +124,14 @@ int print_string(char *s)
 		s = "(null)";
 		len = get_size(s);
 		for (i = 0; i < len; i++)
-			write(1, &s[i], 1);
+			_putchar(s[i]);
 		return (len);
 	}
 	else
 	{
 		len = get_size(s);
 		for (i = 0; i < len; i++)
-			write(1, &s[i], 1);
+			_putchar(s[i]);
 		return (len);
 	}
 }

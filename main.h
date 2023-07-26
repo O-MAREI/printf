@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 int _printf(const char *format, ...);
 int get_size(char str[]);
@@ -12,5 +14,6 @@ int print_octal (unsigned int num);
 int print_hex (unsigned int num);
 int print_handler(va_list args, char conv);
 int print_string(char *s);
+int _putchar(char c);
 
 #endif
