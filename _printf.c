@@ -117,19 +117,21 @@ int print_handler(va_list args, char conv)
 
 int print_string(char *s)
 {
-	int len;
+	int len, i;
 
 	if (s == NULL)
 	{
 		s = "(null)";
 		len = get_size(s);
-		write(1, s, get_size(s));
+		for (i = 0; i < len; i++)
+			write(1, &s[i], 1);
 		return (len);
 	}
 	else
 	{
 		len = get_size(s);
-		write(1, s, get_size(s));
+		for (i = 0; i < len; i++)
+			write(1, &s[i], 1);
 		return (len);
 	}
 }
