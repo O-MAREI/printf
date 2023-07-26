@@ -32,7 +32,10 @@ int _printf(const char *format, ...)
 		{
 			converter = format[i + 1];
 			i++;
-			count = count + print_handler(args, converter);
+			if (converter == '\0' || converter == ' ')
+				return (-1);
+			else
+				count = count + print_handler(args, converter);
 		}
 	}
 
